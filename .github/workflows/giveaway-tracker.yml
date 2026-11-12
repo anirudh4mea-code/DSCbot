@@ -1,0 +1,46 @@
+name: Prop firm giveaway tracker
+
+on:
+  schedule:
+    - cron: "30 3 * * *"   # 09:00 IST
+    - cron: "30 15 * * *"  # 21:00 IST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: giveaway-tracker
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r giveaway-tracker/requirements.txt
+
+      - name: Check for new giveaways
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_HUB_GUILD_ID: ${{ secrets.DISCORD_HUB_GUILD_ID }}
+          DISCORD_ALERT_WEBHOOK_URL: ${{ secrets.DISCORD_ALERT_WEBHOOK_URL }}
+        run: python giveaway-tracker/tracker.py
+
+      - name: Save seen-giveaways state
+        run: |
+          git config user.name "giveaway-tracker[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add giveaway-tracker/state/seen.json
+          if git diff --cached --quiet; then
+            echo "No state changes"
+          else
+            git commit -m "Update giveaway tracker state [skip ci]"
+            git push
+          fi

@@ -1,0 +1,49 @@
+[
+  {
+    "channel_id": "111",
+    "channel_name": "ftmo-feed",
+    "messages": [
+      {
+        "id": "1001",
+        "webhook_id": "9",
+        "author": {"username": "FTMO Community #giveaways"},
+        "content": "🎉 GIVEAWAY! We're giving away 3x FTMO $100k challenges. React with 🎁 to enter. Winners announced Friday!",
+        "message_reference": {"guild_id": "500", "channel_id": "501", "message_id": "7001"},
+        "timestamp": "2026-11-12T03:00:00+00:00"
+      },
+      {
+        "id": "1002",
+        "webhook_id": "9",
+        "author": {"username": "FTMO Community #giveaways"},
+        "content": "Market update: NFP is out, volatility expected on EURUSD.",
+        "timestamp": "2026-11-12T03:10:00+00:00"
+      }
+    ]
+  },
+  {
+    "channel_id": "222",
+    "channel_name": "traders-hub-feed",
+    "messages": [
+      {
+        "id": "2001",
+        "webhook_id": "8",
+        "author": {"username": "Traders Hub #announcements"},
+        "content": "🎉 GIVEAWAY! We're giving away 3x FTMO $100k challenges. React with 🎁 to enter. Winners announced Friday! https://ftmo.com",
+        "timestamp": "2026-11-12T03:05:00+00:00"
+      },
+      {
+        "id": "2002",
+        "webhook_id": "8",
+        "author": {"username": "Traders Hub #announcements"},
+        "content": "",
+        "embeds": [
+          {
+            "title": "FundingPips x Traders Hub Raffle",
+            "description": "Win a free 50k evaluation. Ends <t:1763500000:R>"
+          }
+        ],
+        "timestamp": "2026-11-12T04:00:00+00:00"
+      }
+    ]
+  }
+]
